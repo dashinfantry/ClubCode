@@ -6,28 +6,28 @@ import harbour.clubcode 0.1
 
 Dialog
 {
-	property alias current : context.current
+    property alias current : context.current
 
-	onAccepted:
-	{
-		context.save();
-		main.save();
-	}
+    onAccepted:
+    {
+        context.save();
+        main.save();
+    }
 
-	EditCodePageViewModel
-	{
-		id: context
+    EditCodePageViewModel
+    {
+        id: context
 
-	}
+    }
 
-	DialogHeader
-	{
-		id: header
-	}
+    DialogHeader
+    {
+        id: header
+    }
 
-	EditCodeTemplate
-	{
-		context: context.clone
-		anchors.top: header.bottom
-	}
+    EditCodeTemplate
+    {
+        context: context.clone
+        anchors.top: header.bottom
+    }
 }

@@ -3,7 +3,10 @@
 #endif
 
 #include <sailfishapp.h>
+#include <QtQml>
 #include <QFontDatabase>
+#include <QQuickView>
+#include <QtGui>
 
 #include "AddNewCodePageViewModel.h"
 #include "MainViewModel.h"
@@ -28,4 +31,3 @@ int main(int argc, char *argv[])
 
 	return application->exec();
 }
-

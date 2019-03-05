@@ -5,15 +5,13 @@ import "pages"
 
 ApplicationWindow
 {
-	MainViewModel
-	{
-		id: main
-	}
+    MainViewModel
+    {
+        id: main
+    }
 
-	allowedOrientations: Orientation.Portrait
+    allowedOrientations: Orientation.Portrait
 
-	initialPage: Component { HomePage { } }
+    initialPage: Component { HomePage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }
-
-

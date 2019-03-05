@@ -6,71 +6,71 @@
 
 MainViewModel::MainViewModel()
 {
-	load();
+    load();
 }
 
 QList<QObject *> MainViewModel::codes() const
 {
-	return m_codes;
+    return m_codes;
 }
 
 void MainViewModel::setCodes(QList<QObject *> arg)
 {
-	if (m_codes != arg) {
-		m_codes = arg;
-		emit codesChanged(arg);
-	}
+    if (m_codes != arg) {
+        m_codes = arg;
+        emit codesChanged(arg);
+    }
 }
 
 void MainViewModel::createCode(CodeViewModel* code)
 {
-	m_codes << code;
+    m_codes << code;
 
-	emit codesChanged(m_codes);
+    emit codesChanged(m_codes);
 
-	save();
+    save();
 }
 
 void MainViewModel::removeCode(CodeViewModel *code)
 {
-	m_codes.removeAll(code);
+    m_codes.removeAll(code);
 
-	emit codesChanged(m_codes);
+    emit codesChanged(m_codes);
 
-	save();
+    save();
 }
 
 void MainViewModel::load()
 {
-	QFile file(".local/share/harbour-clubcode/database");
+    QFile file("/home/nemo/.local/share/harbour-clubcode/database");
 
-	if (file.open(QIODevice::ReadOnly))
-	{
-		QDataStream stream(&file);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QDataStream stream(&file);
 
-		while (!stream.atEnd())
-		{
-			CodeViewModel* item = new CodeViewModel();
-			stream >> *item;
+        while (!stream.atEnd())
+        {
+            CodeViewModel* item = new CodeViewModel();
+            stream >> *item;
 
-			m_codes << item;
-		}
-	}
+            m_codes << item;
+        }
+    }
 }
 
 void MainViewModel::save()
 {
-	QDir::current().mkpath(".local/share/harbour-clubcode");
+    QDir::current().mkpath("/home/nemo/.local/share/harbour-clubcode");
 
-	QFile file(".local/share/harbour-clubcode/database");
+    QFile file("/home/nemo/.local/share/harbour-clubcode/database");
 
-	if (file.open(QIODevice::WriteOnly))
-	{
-		QDataStream stream(&file);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        QDataStream stream(&file);
 
-		foreach (QObject*item, m_codes)
-		{
-			stream << *(CodeViewModel*)item;
-		}
-	}
+        foreach (QObject*item, m_codes)
+        {
+            stream << *(CodeViewModel*)item;
+        }
+    }
 }

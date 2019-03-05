@@ -6,32 +6,27 @@ import ".."
 
 Dialog
 {
-	onAccepted: main.createCode(context.current)
+    onAccepted: main.createCode(context.current)
 
-	AddNewCodePageViewModel
-	{
-		id: context
-	}
+    AddNewCodePageViewModel
+    {
+        id: context
+    }
 
-	SilicaFlickable
-	{
-		anchors.fill: parent
+    SilicaFlickable
+    {
+        anchors.fill: parent
 
-		DialogHeader
-		{
-			id: header
-			acceptText: "Create code"
-		}
+        DialogHeader
+        {
+            id: header
+            acceptText: "Create code"
+        }
 
-		EditCodeTemplate
-		{
-			context: context.current
-			anchors.top: header.bottom
-		}
-	}
+        EditCodeTemplate
+        {
+            context: context.current
+            anchors.top: header.bottom
+        }
+    }
 }
-
-
-
-
-

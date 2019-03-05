@@ -3,10 +3,10 @@ import Sailfish.Silica 1.0
 
 CoverBackground
 {
-	Image
-	{
+    Image
+    {
         anchors.centerIn: parent
-		source: Qt.resolvedUrl("../../cover.png")
+        source: Qt.resolvedUrl("../../cover.png")
     }
 
 //    CoverActionList {
