@@ -16,18 +16,18 @@
 
 int main(int argc, char *argv[])
 {
-	qmlRegisterType<MainViewModel>("harbour.clubcode", 0, 1, "MainViewModel");
-	qmlRegisterType<AddNewCodePageViewModel>("harbour.clubcode", 0, 1, "AddNewCodePageViewModel");
-	qmlRegisterType<EditCodePageViewModel>("harbour.clubcode", 0, 1, "EditCodePageViewModel");
+    qmlRegisterType<MainViewModel>("harbour.clubcode", 0, 1, "MainViewModel");
+    qmlRegisterType<AddNewCodePageViewModel>("harbour.clubcode", 0, 1, "AddNewCodePageViewModel");
+    qmlRegisterType<EditCodePageViewModel>("harbour.clubcode", 0, 1, "EditCodePageViewModel");
 
-	QGuiApplication *application = SailfishApp::application(argc, argv);
-	QQuickView *view = SailfishApp::createView();
+    QGuiApplication *application = SailfishApp::application(argc, argv);
+    QQuickView *view = SailfishApp::createView();
 
-	QFontDatabase fontDatabase;
-	fontDatabase.addApplicationFont(":/fonts/code128.ttf");
+    QFontDatabase fontDatabase;
+    fontDatabase.addApplicationFont(":/fonts/code128.ttf");
 
-	view->setSource(SailfishApp::pathTo("qml/harbour-clubcode.qml"));
-	view->showFullScreen();
+    view->setSource(SailfishApp::pathTo("qml/harbour-clubcode.qml"));
+    view->showFullScreen();
 
-	return application->exec();
+    return application->exec();
 }
