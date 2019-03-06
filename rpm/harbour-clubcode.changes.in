@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Mar 06 2019 Arno Dekker <jack.tar@example.com> 0.2-3
+- Tap on barcode to toggle to half the size
 * Wed Mar 06 2019 Arno Dekker <jack.tar@example.com> 0.2-2
 - Better sizing for hires screens
 - Landscape support (barcode remains landscape oriented)

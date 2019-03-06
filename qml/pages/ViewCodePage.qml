@@ -1,14 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Page
-{
+Page {
     property variant current
 
     id: page
 
-    Rectangle
-    {
+    Rectangle {
         color: "white"
         anchors.left: parent.left
         anchors.right: parent.right
@@ -16,26 +14,31 @@ Page
         anchors.top: parent.top
         id: background
 
-        Column
-        {
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                barlabel.font.pixelSize == (300 * mainApp.sizeRatio) ? barlabel.font.pixelSize = barlabel.font.pixelSize / 2 : barlabel.font.pixelSize = (300 * mainApp.sizeRatio)
+            }
+        }
+
+        Column {
             anchors.centerIn: parent
             rotation: isPortrait ? 90 : 0
 
-            Label
-            {
+            Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: current.name
                 color: "black"
                 font.bold: true
             }
-            Label
-            {
+            Label {
+                id: barlabel
                 color: "black"
                 font.family: "Code 128"
                 fontSizeMode: Text.Fit
                 font.pixelSize: 300 * mainApp.sizeRatio
                 width: isPortrait ? background.height - 20 : background.width - 20
-                height: isPortrait ? background.width - 150 : background.height -150
+                height: isPortrait ? background.width - 150 : background.height - 150
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: current.generateCode(current.code)
@@ -43,8 +46,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
-            Label
-            {
+            Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: current.code
                 color: "black"
