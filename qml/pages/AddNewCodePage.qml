@@ -15,16 +15,21 @@ Dialog
 
     SilicaFlickable
     {
+        VerticalScrollDecorator {
+        }
         anchors.fill: parent
+        contentWidth: parent.width
+        contentHeight: header.height + code_templ.height
 
         DialogHeader
         {
             id: header
-            acceptText: "Create code"
+            acceptText: qsTr("Create code")
         }
 
         EditCodeTemplate
         {
+            id: code_templ
             context: context.current
             anchors.top: header.bottom
         }

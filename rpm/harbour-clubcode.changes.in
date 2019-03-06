@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Mar 06 2019 Arno Dekker <jack.tar@example.com> 0.2-2
+- Better sizing for hires screens
+- Landscape support (barcode remains landscape oriented)
 * Tue Mar 05 2019 Arno Dekker <jack.tar@example.com> 0.2-1
 - Fixed issue of not loading barcodes at start
 - Added remorse timer for removing

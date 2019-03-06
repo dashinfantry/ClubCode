@@ -33,7 +33,7 @@ Page
             {
 
                 width: page.width
-                height: menu.active ? menu.height + 160 : 160
+                height: menu.active ? menu.height + 160 * mainApp.sizeRatio: 160 * mainApp.sizeRatio
                 id: item
 
                 ContextMenu
@@ -54,7 +54,7 @@ Page
 
                 Rectangle
                 {
-                    height: 160
+                    height: 160 * mainApp.sizeRatio
                     width: parent.width
                     color: "white"
 
@@ -64,7 +64,7 @@ Page
                         color: "gray"
                         font.family: "Code 128"
                         anchors.centerIn: parent
-                        font.pixelSize: 140
+                        font.pixelSize: 140 * mainApp.sizeRatio
                         text: modelData.generateCode(modelData.code)
                         font.letterSpacing: 0
                         opacity: 0.5

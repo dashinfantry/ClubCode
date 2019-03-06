@@ -20,14 +20,23 @@ Dialog
 
     }
 
-    DialogHeader
+    SilicaFlickable
     {
-        id: header
-    }
+        VerticalScrollDecorator {
+        }
+        anchors.fill: parent
+        contentWidth: parent.width
+        contentHeight: header.height + code_templ.height
+        DialogHeader
+        {
+            id: header
+        }
 
-    EditCodeTemplate
-    {
-        context: context.clone
-        anchors.top: header.bottom
+        EditCodeTemplate
+        {
+            id: code_templ
+            context: context.clone
+            anchors.top: header.bottom
+        }
     }
 }

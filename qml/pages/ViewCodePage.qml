@@ -7,34 +7,35 @@ Page
 
     id: page
 
-    PageHeader
-    {
-        title: current.name
-        id: header
-    }
-
     Rectangle
     {
         color: "white"
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.top: header.bottom
+        anchors.top: parent.top
         id: background
 
         Column
         {
             anchors.centerIn: parent
-            rotation: 90
+            rotation: isPortrait ? 90 : 0
 
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: current.name
+                color: "black"
+                font.bold: true
+            }
             Label
             {
                 color: "black"
                 font.family: "Code 128"
                 fontSizeMode: Text.Fit
-                font.pixelSize: 300
-                width: background.height - 20
-                height: background.width - 150
+                font.pixelSize: 300 * mainApp.sizeRatio
+                width: isPortrait ? background.height - 20 : background.width - 20
+                height: isPortrait ? background.width - 150 : background.height -150
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: current.generateCode(current.code)
