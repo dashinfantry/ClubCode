@@ -5,23 +5,23 @@
 
 class AddNewCodePageViewModel : public QObject
 {
-		Q_OBJECT
+        Q_OBJECT
 
-		Q_PROPERTY(QObject* current READ current WRITE setCurrent NOTIFY currentChanged)
+        Q_PROPERTY(QObject* current READ current WRITE setCurrent NOTIFY currentChanged)
 
-	public:
-		explicit AddNewCodePageViewModel(QObject *parent = 0);
+    public:
+        explicit AddNewCodePageViewModel(QObject *parent = 0);
 
-		QObject* current() const;
+        QObject* current() const;
 
-	signals:
-		void currentChanged(QObject* arg);
+    signals:
+        void currentChanged(QObject* arg);
 
-	private:
-		QObject* m_current;
+    private:
+        QObject* m_current;
 
-	public slots:
-		void setCurrent(QObject* arg);
+    public slots:
+        void setCurrent(QObject* arg);
 };
 
 #endif // ADDNEWCODEPAGEVIEWMODEL_H

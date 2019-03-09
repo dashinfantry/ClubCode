@@ -34,14 +34,14 @@ Page {
             Label {
                 id: barlabel
                 color: "black"
-                font.family: "Code 128"
+                font.family: current.barcodeType === "0" ? "Code 128" : "Code EAN13"
                 fontSizeMode: Text.Fit
                 font.pixelSize: 300 * mainApp.sizeRatio
                 width: isPortrait ? background.height - 20 : background.width - 20
                 height: isPortrait ? background.width - 150 : background.height - 150
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
-                text: current.generateCode(current.code)
+                text: current.generateCode(current.code, current.barcodeType)
                 font.letterSpacing: 0
                 anchors.horizontalCenter: parent.horizontalCenter
             }

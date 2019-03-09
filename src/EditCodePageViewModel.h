@@ -7,29 +7,29 @@
 
 class EditCodePageViewModel : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	Q_PROPERTY(QObject* current READ current WRITE setCurrent NOTIFY currentChanged)
-	Q_PROPERTY(QObject* clone READ clone NOTIFY cloneChanged)
+    Q_PROPERTY(QObject* current READ current WRITE setCurrent NOTIFY currentChanged)
+    Q_PROPERTY(QObject* clone READ clone NOTIFY cloneChanged)
 
-	public:
-		explicit EditCodePageViewModel(QObject *parent = 0);
+    public:
+        explicit EditCodePageViewModel(QObject *parent = 0);
 
-		QObject* current() const;
-		QObject* clone() const;
+        QObject* current() const;
+        QObject* clone() const;
 
-	signals:
-		void currentChanged(QObject* arg);
+    signals:
+        void currentChanged(QObject* arg);
 
-		void cloneChanged(QObject* arg);
+        void cloneChanged(QObject* arg);
 
-	public slots:
-		void setCurrent(QObject* arg);
-		void save();
+    public slots:
+        void setCurrent(QObject* arg);
+        void save();
 
-	private:
-		CodeViewModel* m_new;
-		CodeViewModel* m_current;
+    private:
+        CodeViewModel* m_new;
+        CodeViewModel* m_current;
 };
 
 #endif // EDITCODEPAGEVIEWMODEL_H

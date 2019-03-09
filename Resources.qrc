@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/fonts">
         <file>code128.ttf</file>
+        <file>ean13.ttf</file>
     </qresource>
 </RCC>

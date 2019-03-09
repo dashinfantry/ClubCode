@@ -23,17 +23,17 @@ Page
         {
             anchors.fill: parent
             model: main.codes
-            spacing: 10
+            spacing: 7
             header: PageHeader
             {
-                title: "Codes"
+                title: qsTr("Codes")
             }
 
             delegate: Item
             {
 
                 width: page.width
-                height: menu.active ? menu.height + 160 * mainApp.sizeRatio: 160 * mainApp.sizeRatio
+                height: menu.active ? menu.height + 130 * mainApp.sizeRatio: 130 * mainApp.sizeRatio
                 id: item
 
                 ContextMenu
@@ -54,7 +54,7 @@ Page
 
                 Rectangle
                 {
-                    height: 160 * mainApp.sizeRatio
+                    height: 130 * mainApp.sizeRatio
                     width: parent.width
                     color: "white"
 
@@ -62,10 +62,10 @@ Page
                     Label
                     {
                         color: "gray"
-                        font.family: "Code 128"
+                        font.family: modelData.barcodeType === "0" ? "Code 128" : "Code EAN13"
                         anchors.centerIn: parent
-                        font.pixelSize: 140 * mainApp.sizeRatio
-                        text: modelData.generateCode(modelData.code)
+                        font.pixelSize: 100 * mainApp.sizeRatio
+                        text: modelData.generateCode(modelData.code, modelData.barcodeType)
                         font.letterSpacing: 0
                         opacity: 0.5
                         anchors.verticalCenterOffset: -6

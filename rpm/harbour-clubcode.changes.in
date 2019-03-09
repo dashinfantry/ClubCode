@@ -8,6 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Mar 09 2019 Arno Dekker <jack.tar@example.com> 0.3-2
+- Added EAN-13 as barcode type
+* Sat Mar 09 2019 Arno Dekker <jack.tar@example.com> 0.3-1
+- Added EAN-8 as barcode type
+- More compact list of barcodes
+- Resize cover icon
 * Wed Mar 06 2019 Arno Dekker <jack.tar@example.com> 0.2-3
 - Tap on barcode to toggle to half the size
 * Wed Mar 06 2019 Arno Dekker <jack.tar@example.com> 0.2-2

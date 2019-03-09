@@ -7,6 +7,7 @@ CoverBackground
     {
         anchors.centerIn: parent
         source: Qt.resolvedUrl("../../cover.png")
+        scale: mainApp.sizeRatio
     }
 
 //    CoverActionList {

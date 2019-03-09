@@ -8,27 +8,27 @@
 
 class MainViewModel : public QObject
 {
-		Q_OBJECT
+        Q_OBJECT
 
-		Q_PROPERTY(QList<QObject*> codes READ codes WRITE setCodes NOTIFY codesChanged)
+        Q_PROPERTY(QList<QObject*> codes READ codes WRITE setCodes NOTIFY codesChanged)
 
-	public:
-		MainViewModel();
+    public:
+        MainViewModel();
 
-		QList<QObject*> codes() const;
+        QList<QObject*> codes() const;
 
-	public slots:
-		void setCodes(QList<QObject*> arg);
-		void createCode(CodeViewModel* code);
-		void removeCode(CodeViewModel* code);
-		void load();
-		void save();
+    public slots:
+        void setCodes(QList<QObject*> arg);
+        void createCode(CodeViewModel* code);
+        void removeCode(CodeViewModel* code);
+        void load();
+        void save();
 
-	signals:
-		void codesChanged(QList<QObject*> arg);
+    signals:
+        void codesChanged(QList<QObject*> arg);
 
-	private:
-		QList<QObject*> m_codes;
+    private:
+        QList<QObject*> m_codes;
 };
 
 #endif // MAINVIEWMODEL_H

@@ -8,17 +8,17 @@
 
 class BarcodeImageProvider : public QQuickImageProvider
 {
-	public:
-		BarcodeImageProvider();
+    public:
+        BarcodeImageProvider();
 
-		// QQuickImageProvider interface
-	public:
-		QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize);
-	private:
-		QString generateCode(QString code);
-		int codeToChar(int code);
-		int charToCode(int ch);
-		int calculateCheckCharacter(QString code);
+        // QQuickImageProvider interface
+    public:
+        QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize);
+    private:
+        QString generateCode(QString code);
+        int codeToChar(int code);
+        int charToCode(int ch);
+        int calculateCheckCharacter(QString code);
 };
 
 #endif // BARCODEIMAGEPROVIDER_H
