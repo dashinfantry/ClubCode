@@ -41,7 +41,7 @@ Page {
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: current.name
+                text: current.description !== "" ? current.name + " (" + current.description + ")" : current.name
                 color: "black"
                 font.bold: true
             }
@@ -62,8 +62,10 @@ Page {
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
+                font.family: 'monospace'
                 text: current.code
                 color: "black"
+                visible: current.barcodeType === "0" || current.barcodeType === "3"
             }
         }
     }

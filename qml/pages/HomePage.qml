@@ -34,6 +34,9 @@ Page
                 title: qsTr("Barcodes")
             }
 
+            VerticalScrollDecorator {
+            }
+
             delegate: Item
             {
 
@@ -72,7 +75,7 @@ Page
                         font.pixelSize: 100 * mainApp.sizeRatio
                         text: modelData.generateCode(modelData.code, modelData.barcodeType)
                         font.letterSpacing: 0
-                        opacity: 0.5
+                        opacity: 0.3
                         anchors.verticalCenterOffset: -6
                     }
 

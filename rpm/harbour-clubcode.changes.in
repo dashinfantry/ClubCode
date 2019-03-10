@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Mar 10 2019 Arno Dekker <jack.tar@example.com> 0.3-4
+- Small visual changes
 * Sat Mar 09 2019 Arno Dekker <jack.tar@example.com> 0.3-3
 - Added Code 39 as barcode type
 - Added About page
