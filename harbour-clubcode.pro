@@ -39,4 +39,14 @@ RESOURCES += \
 resources.files = cover.png
 resources.path = /usr/share/$${TARGET}
 
+# only include these files for translation:
+lupdate_only {
+    SOURCES = qml/*.qml \
+              qml/pages/*.qml
+}
+
 INSTALLS += resources
+
+# to disable building translations every time, comment out the
+# following CONFIG line
+CONFIG += sailfishapp_i18n

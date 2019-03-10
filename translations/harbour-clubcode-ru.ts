@@ -30,42 +30,42 @@
 <context>
     <name>EditCodeTemplate</name>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="31"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="39"/>
         <source>Barcode type</source>
         <translation>Тип штрихкода</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="35"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="43"/>
         <source>Code 128</source>
         <translation>Code 128</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="38"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="46"/>
         <source>EAN 8</source>
         <translation>EAN 8</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="41"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="49"/>
         <source>EAN 13</source>
         <translation>EAN 13</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="44"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="52"/>
         <source>Code 39</source>
         <translation>Code 39</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="58"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="64"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="75"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="86"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../qml/EditCodeTemplate.qml" line="92"/>
+        <location filename="../qml/EditCodeTemplate.qml" line="109"/>
         <source>Code</source>
         <translation>Код</translation>
     </message>
