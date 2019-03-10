@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     QFontDatabase fontDatabase;
     fontDatabase.addApplicationFont(":/fonts/code128.ttf");
     fontDatabase.addApplicationFont(":/fonts/ean13.ttf");
+    fontDatabase.addApplicationFont(":/fonts/code39.ttf");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-clubcode.qml"));
     view->showFullScreen();

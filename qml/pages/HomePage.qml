@@ -14,6 +14,11 @@ Page
         {
             MenuItem
             {
+                text: qsTr("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+            }
+            MenuItem
+            {
                 text: qsTr("Add a new Code")
                 onClicked: pageStack.push(Qt.resolvedUrl("AddNewCodePage.qml"))
             }
@@ -26,7 +31,7 @@ Page
             spacing: 7
             header: PageHeader
             {
-                title: qsTr("Codes")
+                title: qsTr("Barcodes")
             }
 
             delegate: Item
@@ -62,7 +67,7 @@ Page
                     Label
                     {
                         color: "gray"
-                        font.family: modelData.barcodeType === "0" ? "Code 128" : "Code EAN13"
+                        font.family: modelData.barcodeType === "0" ? "Code 128" : modelData.barcodeType === "3" ? "code39" : "Code EAN13"
                         anchors.centerIn: parent
                         font.pixelSize: 100 * mainApp.sizeRatio
                         text: modelData.generateCode(modelData.code, modelData.barcodeType)

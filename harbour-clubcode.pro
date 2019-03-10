@@ -18,6 +18,7 @@ OTHER_FILES += \
     qml/pages/EditCodePage.qml \
     qml/pages/AddNewCodePage.qml \
     qml/pages/HomePage.qml \
+    qml/pages/About.qml \
     qml/harbour-clubcode.qml \
     rpm/harbour-clubcode.yaml \
     rpm/harbour-clubcode.spec \
@@ -39,4 +40,3 @@ resources.files = cover.png
 resources.path = /usr/share/$${TARGET}
 
 INSTALLS += resources
-

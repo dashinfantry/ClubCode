@@ -114,7 +114,7 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
         encoded = barcode;
     }
 
-    if ( barcodeType == "2" ) { // EAN 13
+    if ( barcodeType == "2" ) {  // EAN 13
         int i;
         QString barcode;
         if (code.count() == 12) {
@@ -191,7 +191,14 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
             barcode = barcode + static_cast<char>(97 + code.mid(i, 1).toInt());
         }
         barcode = barcode + "+";  // Add end mark
-        QTextStream(stdout) << "barcode = " << barcode;
+        /* QTextStream(stdout) << "barcode = " << barcode; */
+        encoded = barcode;
+    }
+    if ( barcodeType == "3" ) {  // Code 39
+        QString barcode;
+        barcode = "*";  // Add start mark
+        barcode = barcode + code;
+        barcode = barcode + "*";  // Add end mark
         encoded = barcode;
     }
     return encoded;
