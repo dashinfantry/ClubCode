@@ -44,6 +44,24 @@ Page
                 height: menu.active ? menu.height + 130 * mainApp.sizeRatio: 130 * mainApp.sizeRatio
                 id: item
 
+                function getFontName() {
+                    if (modelData.barcodeType === "0") {
+                        return "Code 128"
+                    }
+                    if (modelData.barcodeType === "1") {
+                        return "Code EAN13"
+                    }
+                    if (modelData.barcodeType === "2") {
+                        return "Code EAN13"
+                    }
+                    if (modelData.barcodeType === "3") {
+                        return "Bar-Code 39"
+                    }
+                    if (modelData.barcodeType === "4") {
+                        return "Code-93"
+                    }
+                }
+
                 ContextMenu
                 {
                     id: menu
@@ -70,7 +88,7 @@ Page
                     Label
                     {
                         color: "gray"
-                        font.family: modelData.barcodeType === "0" ? "Code 128" : modelData.barcodeType === "3" ? "code39" : "Code EAN13"
+                        font.family: getFontName()
                         anchors.centerIn: parent
                         font.pixelSize: 100 * mainApp.sizeRatio
                         text: modelData.generateCode(modelData.code, modelData.barcodeType)

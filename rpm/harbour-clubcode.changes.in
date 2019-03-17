@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Mar 17 2019 Arno Dekker <jack.tar@example.com> 0.3-7
+- Barcodes can be made another step smaller
+- Added Code 93
 * Sun Mar 10 2019 Arno Dekker <jack.tar@example.com> 0.3-6
 - From upstream: edittemplate.qml changed enterkey to go to next field and accept the input
 * Sun Mar 10 2019 Arno Dekker <jack.tar@example.com> 0.3-5

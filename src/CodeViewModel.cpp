@@ -201,6 +201,71 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
         barcode = barcode + "*";  // Add end mark
         encoded = barcode;
     }
+    if ( barcodeType == "4" ) {  // Code 93
+        QString barcode;
+        barcode = barcode + static_cast<char>(144);  // Add start/end mark
+        /* barcode = barcode + '-'; */
+        int weight = code.length();
+        int weighted_sum = 0;
+        int i, checkum_loop, v_ascii;
+        QChar c;
+        for ( checkum_loop = 0; checkum_loop < 2; checkum_loop+=1 ) {
+            for ( i = 0; i < code.length(); i+=1 ) {
+                c = code.at(i);
+                if (c.digitValue() != -1) {
+                    v_ascii = c.digitValue();
+                } else {
+                    if (c == '-') {
+                        v_ascii = 36;
+                    } else if (c == '.') {
+                        v_ascii = 37;
+                    } else if (c == ' ') {
+                        v_ascii = 38;
+                    } else if (c == '$') {
+                        v_ascii = 39;
+                    } else if (c == '/') {
+                        v_ascii = 40;
+                    } else if (c == '+') {
+                        v_ascii = 41;
+                    } else if (c == '%') {
+                        v_ascii = 42;
+                    } else {
+                        v_ascii = c.toLatin1() - 55;
+                    }
+                }
+                weighted_sum = weighted_sum + (weight * (v_ascii));
+                /* QTextStream(stdout) << "char_code: " << v_ascii; */
+                /* QTextStream(stdout) << "weighted_sum tussenstand: " << weighted_sum; */
+                weight = weight - 1;
+            }
+            /* QTextStream(stdout) << "weighted_sum = " << weighted_sum; */
+            switch (weighted_sum % 47) {
+                case  0: code = code + "0"; break;
+                case  1: code = code + "1"; break;
+                case  2: code = code + "2"; break;
+                case  3: code = code + "3"; break;
+                case  4: code = code + "4"; break;
+                case  5: code = code + "5"; break;
+                case  6: code = code + "6"; break;
+                case  7: code = code + "7"; break;
+                case  8: code = code + "8"; break;
+                case  9: code = code + "9"; break;
+                case 36: code = code + "-"; break;
+                case 39: code = code + "$"; break;
+                case 40: code = code + "/"; break;
+                case 41: code = code + "+"; break;
+                case 42: code = code + "%"; break;
+                default: code = code + static_cast<char>((weighted_sum % 47) + 55); break;
+            }
+            weight = code.length();
+            weighted_sum = 0;
+        }
+        barcode = barcode + code.replace(" ", "ß");
+        barcode = barcode + static_cast<char>(144);  // Add start/end mark
+        barcode = barcode + static_cast<char>(252);  // Terminate code
+        /* QTextStream(stdout) << "barcode: " << barcode; */
+        encoded = barcode;
+    }
     return encoded;
 }
 

@@ -3,23 +3,43 @@ import Sailfish.Silica 1.0
 
 Page {
     property variant current
+    property real fullsize: 260 * mainApp.sizeRatio
 
     id: page
 
     function resize_barcode() {
         if (barlabel.font.pixelSize === (260 * mainApp.sizeRatio)) {
             barlabel.font.pixelSize = barlabel.font.pixelSize / 2
-            return
         }
-        if (barlabel.font.pixelSize === (130 * mainApp.sizeRatio)) {
+        else if (barlabel.font.pixelSize === (130 * mainApp.sizeRatio)) {
             barlabel.font.pixelSize = barlabel.font.pixelSize / 2
-            return
         }
-        if (barlabel.font.pixelSize === (65 * mainApp.sizeRatio)) {
-            barlabel.font.pixelSize = barlabel.font.pixelSize * 4
-            return
+        else if (barlabel.font.pixelSize === (65 * mainApp.sizeRatio)) {
+            barlabel.font.pixelSize = barlabel.font.pixelSize / 1.5
+        }
+        else {
+            barlabel.font.pixelSize = fullsize
         }
     }
+
+    function getFontName() {
+        if (current.barcodeType === "0") {
+            return "Code 128"
+        }
+        if (current.barcodeType === "1") {
+            return "Code EAN13"
+        }
+        if (current.barcodeType === "2") {
+            return "Code EAN13"
+        }
+        if (current.barcodeType === "3") {
+            return "Bar-Code 39"
+        }
+        if (current.barcodeType === "4") {
+            return "Code-93"
+        }
+    }
+
     Rectangle {
         color: "white"
         anchors.left: parent.left
@@ -48,7 +68,7 @@ Page {
             Label {
                 id: barlabel
                 color: "black"
-                font.family: current.barcodeType === "0" ? "Code 128" : current.barcodeType === "3" ? "code39" : "Code EAN13"
+                font.family: getFontName()
                 fontSizeMode: Text.Fit
                 font.pixelSize: 260 * mainApp.sizeRatio
                 width: isPortrait ? background.height - 20 : background.width - 20
@@ -65,7 +85,7 @@ Page {
                 font.family: 'monospace'
                 text: current.code
                 color: "black"
-                visible: current.barcodeType === "0" || current.barcodeType === "3"
+                visible: current.barcodeType === "0" || current.barcodeType === "3" || current.barcodeType === "4"
             }
         }
     }

@@ -13,7 +13,10 @@ Column {
         regExp: /[a-zA-Z0-9]+/
     }
     property var valid_code39: RegExpValidator {
-        regExp: /[A-Z0-9]+/
+        regExp: /[A-Z0-9-.$/+% ]+/
+    }
+    property var valid_code93: RegExpValidator {
+        regExp: /[A-Z0-9-.$/+% ]+/
     }
 
     width: parent.width
@@ -51,6 +54,9 @@ Column {
             MenuItem {
                 text: qsTr("Code 39")
             } // 3
+            MenuItem {
+                text: qsTr("Code 93")
+            } // 4
         }
         Binding {
             target: context
@@ -107,18 +113,28 @@ Column {
     TextField {
         id: code
         placeholderText: qsTr("Code")
-        inputMethodHints: barcode_type.currentIndex
-                          === 0 ? Qt.ImhNoPredictiveText : barcode_type.currentIndex
-                                  === 3 ? Qt.ImhUppercaseOnly : Qt.ImhDigitsOnly
+        inputMethodHints:  if (barcode_type.currentIndex === 0) {
+                       Qt.ImhNoPredictiveText
+                   } else if (barcode_type.currentIndex === 1) {
+                       Qt.ImhDigitsOnly
+                   } else if (barcode_type.currentIndex === 2) {
+                       Qt.ImhDigitsOnly
+                   } else if (barcode_type.currentIndex === 3) {
+                       Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
+                   } else if (barcode_type.currentIndex === 4) {
+                       Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
+                   }
         EnterKey.enabled: barcode_length()
         validator: if (barcode_type.currentIndex === 0) {
                        valid_code128
                    } else if (barcode_type.currentIndex === 1) {
                        valid_ean8
+                   } else if (barcode_type.currentIndex === 2) {
+                       valid_ean13
                    } else if (barcode_type.currentIndex === 3) {
                        valid_code39
-                   } else {
-                       valid_ean13
+                   } else if (barcode_type.currentIndex === 4) {
+                       valid_code93
                    }
         label: placeholderText
         width: parent.width

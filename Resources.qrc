@@ -2,6 +2,7 @@
     <qresource prefix="/fonts">
         <file>code128.ttf</file>
         <file>code39.ttf</file>
+        <file>code93.ttf</file>
         <file>ean13.ttf</file>
     </qresource>
 </RCC>
