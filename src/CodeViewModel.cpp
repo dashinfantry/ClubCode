@@ -71,6 +71,7 @@ void CodeViewModel::setBarcodeType(QString arg) {
 
 QString CodeViewModel::generateCode(QString code, QString barcodeType) {
     QString encoded;
+    QString barcode;
 
     if ( barcodeType == "0" ) {  // code 128
         encoded.prepend(QChar(codeToChar(CODE128_B_START)));  // Start set with B Code 104
@@ -88,7 +89,6 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
            Return : * a string which give the bar code when it is dispayed with EAN13.TTF font
         */
         int i;
-        QString barcode;
         if (code.count() == 7) {
             int checksum = 0;
             // no 8th (checksum) number entered
@@ -116,7 +116,6 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
 
     if ( barcodeType == "2" ) {  // EAN 13
         int i;
-        QString barcode;
         if (code.count() == 12) {
             int checksum = 0;
             // no 13th (checksum) number entered
@@ -195,14 +194,12 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
         encoded = barcode;
     }
     if ( barcodeType == "3" ) {  // Code 39
-        QString barcode;
         barcode = "*";  // Add start mark
         barcode = barcode + code;
         barcode = barcode + "*";  // Add end mark
         encoded = barcode;
     }
     if ( barcodeType == "4" ) {  // Code 93
-        QString barcode;
         barcode = barcode + static_cast<char>(144);  // Add start/end mark
         /* barcode = barcode + '-'; */
         int weight = code.length();
@@ -266,6 +263,60 @@ QString CodeViewModel::generateCode(QString code, QString barcodeType) {
         /* QTextStream(stdout) << "barcode: " << barcode; */
         encoded = barcode;
     }
+    if ( barcodeType == "5" ) {  // UPC-E
+        // leading number
+        int system_encode = code.at(0).digitValue();
+        if ( system_encode == 0 ) {
+            barcode = "P";
+        } else {
+            barcode = "Q";  // 1 as second option
+        }
+        // 6 digits
+        QChar c;
+        int i;
+        QString OddEven;
+        int code_nbr = code.at(7).digitValue();
+        for ( i = 0; i < 10; i+=1 ) {
+            switch (code_nbr) {
+                case 0: OddEven = "EEEOOO"; break;
+                case 1: OddEven = "EEOEOO"; break;
+                case 2: OddEven = "EEOOEO"; break;
+                case 3: OddEven = "EEOOOE"; break;
+                case 4: OddEven = "EOEEOO"; break;
+                case 5: OddEven = "EOOEEO"; break;
+                case 6: OddEven = "EOOOEE"; break;
+                case 7: OddEven = "EOEOEO"; break;
+                case 8: OddEven = "EOEOOE"; break;
+                case 9: OddEven = "EOOEOE"; break;
+            }
+        }
+        if ( system_encode == 1 ) {
+            // invert even/odd
+            OddEven = OddEven.replace('E', 'o').replace('O', 'e');
+            OddEven = OddEven.toUpper();
+        }
+        for ( i = 1; i < 7; i+=1 ) {
+            if ( OddEven.at(i-1).toLatin1() == 'E' ) {
+                barcode = barcode + static_cast<char>(16 + code.at(i).toLatin1());
+            } else {
+                barcode = barcode + code.at(i).toLatin1();
+            }
+        }
+        // trailing number
+        switch (code_nbr) {
+            case  0: barcode = barcode + "`"; break;
+            case  1: barcode = barcode + "a"; break;
+            case  2: barcode = barcode + "b"; break;
+            case  3: barcode = barcode + "c"; break;
+            case  4: barcode = barcode + "d"; break;
+            case  5: barcode = barcode + "e"; break;
+            case  6: barcode = barcode + "f"; break;
+            case  7: barcode = barcode + "g"; break;
+            case  8: barcode = barcode + "h"; break;
+            case  9: barcode = barcode + "i"; break;
+        }
+        encoded = barcode;
+    }
     return encoded;
 }
 
@@ -285,15 +336,15 @@ int CodeViewModel::calculateCheckCharacter(QString code) {
     int weight = 1; //Initial weight is 1
 
     foreach(char ch, encapBarcode) {
-        int code_char = charToCode((int)ch); //Calculate character code
-        sum += code_char*weight; //add weighted code to sum
-        weight++; //increment weight
+        int code_char = charToCode((int)ch);  // Calculate character code
+        sum += code_char*weight;  // add weighted code to sum
+        weight++;  // increment weight
     }
 
     int remain = sum%103;  // The check character is the modulo 103 of the sum
 
-    //Calculate the font integer from the code integer
-    if(remain >= 95)
+    // Calculate the font integer from the code integer
+    if (remain >= 95)
         remain += 105;
     else
         remain += 32;

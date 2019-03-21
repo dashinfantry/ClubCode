@@ -38,6 +38,9 @@ Page {
         if (current.barcodeType === "4") {
             return "Code-93"
         }
+        if (current.barcodeType === "5") {
+            return "UPC-E Short"
+        }
     }
 
     Rectangle {

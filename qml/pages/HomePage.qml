@@ -60,6 +60,9 @@ Page
                     if (modelData.barcodeType === "4") {
                         return "Code-93"
                     }
+                    if (modelData.barcodeType === "5") {
+                        return "UPC-E Short"
+                    }
                 }
 
                 ContextMenu

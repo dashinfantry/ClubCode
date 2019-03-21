@@ -18,6 +18,9 @@ Column {
     property var valid_code93: RegExpValidator {
         regExp: /[A-Z0-9-.$/+% ]+/
     }
+    property var valid_upce: RegExpValidator {
+        regExp: /^[0,1]{1}[0-9]{7}$/
+    }
 
     width: parent.width
 
@@ -32,6 +35,10 @@ Column {
         if (barcode_type.currentIndex === 2) {
             if (code.text.trim().length === 12 || code.text.trim(
                         ).length === 13)
+                return true
+        }
+        if (barcode_type.currentIndex === 5) {
+            if (code.text.trim().length === 6 || code.text.trim().length === 7)
                 return true
         }
         return false
@@ -57,6 +64,9 @@ Column {
             MenuItem {
                 text: qsTr("Code 93")
             } // 4
+            MenuItem {
+                text: qsTr("UPC-E")
+            } // 5
         }
         Binding {
             target: context
@@ -123,6 +133,8 @@ Column {
                        Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
                    } else if (barcode_type.currentIndex === 4) {
                        Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
+                   } else if (barcode_type.currentIndex === 5) {
+                       Qt.ImhDigitsOnly
                    }
         EnterKey.enabled: barcode_length()
         validator: if (barcode_type.currentIndex === 0) {
@@ -135,6 +147,8 @@ Column {
                        valid_code39
                    } else if (barcode_type.currentIndex === 4) {
                        valid_code93
+                   } else if (barcode_type.currentIndex === 5) {
+                       valid_upce
                    }
         label: placeholderText
         width: parent.width

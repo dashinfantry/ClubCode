@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Mar 17 2019 Arno Dekker <jack.tar@example.com> 0.3-8
+- Added UPC-E
 * Sun Mar 17 2019 Arno Dekker <jack.tar@example.com> 0.3-7
 - Barcodes can be made another step smaller
 - Added Code 93
