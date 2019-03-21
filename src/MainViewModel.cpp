@@ -55,6 +55,13 @@ void MainViewModel::load()
 
             m_codes << item;
         }
+        for (int i=0; i< m_codes.count(); i++) {
+            for (int j=0; j < i; j++) {
+                if (m_codes.at(i)->property("name") <= m_codes.at(j)->property("name")) {
+                    m_codes.move(i, j);
+                }
+            }
+        }
     }
 }
 
