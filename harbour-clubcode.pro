@@ -25,7 +25,8 @@ OTHER_FILES += \
     harbour-clubcode.desktop
 
 CONFIG += sailfishapp_i18n
-TRANSLATIONS = translations/harbour-clubcode-ru.ts
+TRANSLATIONS = translations/harbour-clubcode-ru.ts \
+               translations/harbour-clubcode-zh_cn.ts
 
 HEADERS += \
     src/MainViewModel.h \
