@@ -1,11 +1,34 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.clubcode.Settings 1.0
 
 Page {
     property variant current
     property real fullsize: 260 * mainApp.sizeRatio
+    property int orientationSetting: (Orientation.Portrait | Orientation.Landscape | Orientation.LandscapeInverted)
+    allowedOrientations: orientationSetting
 
     id: page
+
+    MySettings {
+        id: myset
+    }
+
+    Component.onCompleted: {
+        // This binds the setting for allowed orientations to the property which is used on all sub-pages
+        orientationSetting = Qt.binding(function() {
+            switch (myset.value("orientation")) {
+                case "portrait":
+                    return Orientation.Portrait
+                case "landscape":
+                    return Orientation.Landscape
+                case "dynamic":
+                    return (Orientation.Portrait | Orientation.Landscape | Orientation.LandscapeInverted)
+                default:
+                    return Orientation.Portrait
+            }
+        })
+    }
 
     function resize_barcode() {
         if (barlabel.font.pixelSize === (260 * mainApp.sizeRatio)) {
@@ -60,11 +83,10 @@ Page {
 
         Column {
             anchors.centerIn: parent
-            rotation: isPortrait ? 90 : 0
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: current.description !== "" ? current.name + " (" + current.description + ")" : current.name
+                text: current.description !== "" ? "←  " + current.name + " (" + current.description + ")" : current.name
                 color: "black"
                 font.bold: true
             }
@@ -74,8 +96,8 @@ Page {
                 font.family: getFontName()
                 fontSizeMode: Text.Fit
                 font.pixelSize: 260 * mainApp.sizeRatio
-                width: isPortrait ? background.height - 20 : background.width - 20
-                height: isPortrait ? background.width - 150 : background.height - 150
+                width: background.width - 100
+                height: background.height - ( Theme.paddingLarge + 100 )
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: current.generateCode(current.code, current.barcodeType)

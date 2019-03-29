@@ -12,10 +12,10 @@
 #include "MainViewModel.h"
 #include "BarcodeImageProvider.h"
 #include "EditCodePageViewModel.h"
+#include "settings.h"
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     qmlRegisterType<MainViewModel>("harbour.clubcode", 0, 1, "MainViewModel");
     qmlRegisterType<AddNewCodePageViewModel>("harbour.clubcode", 0, 1, "AddNewCodePageViewModel");
     qmlRegisterType<EditCodePageViewModel>("harbour.clubcode", 0, 1, "EditCodePageViewModel");
@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
     fontDatabase.addApplicationFont(":/fonts/code39.ttf");
     fontDatabase.addApplicationFont(":/fonts/code93.ttf");
     fontDatabase.addApplicationFont(":/fonts/upc-e.ttf");
+
+    qmlRegisterType<Settings>("harbour.clubcode.Settings", 1 , 0 , "MySettings");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-clubcode.qml"));
     view->showFullScreen();

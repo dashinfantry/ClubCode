@@ -7,6 +7,7 @@ SOURCES += \
     src/CodeViewModel.cpp \
     src/AddNewCodePageViewModel.cpp \
     src/EditCodePageViewModel.cpp \
+    src/settings.cpp \
     src/main.cpp
 
 OTHER_FILES += \
@@ -18,6 +19,7 @@ OTHER_FILES += \
     qml/pages/EditCodePage.qml \
     qml/pages/AddNewCodePage.qml \
     qml/pages/HomePage.qml \
+    qml/pages/SettingPage.qml \
     qml/pages/About.qml \
     qml/harbour-clubcode.qml \
     rpm/harbour-clubcode.yaml \
@@ -32,6 +34,7 @@ HEADERS += \
     src/MainViewModel.h \
     src/CodeViewModel.h \
     src/AddNewCodePageViewModel.h \
+    src/settings.h \
     src/EditCodePageViewModel.h
 
 RESOURCES += \

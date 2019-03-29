@@ -19,6 +19,11 @@ Page
             }
             MenuItem
             {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
+            }
+            MenuItem
+            {
                 text: qsTr("Add a new Code")
                 onClicked: pageStack.push(Qt.resolvedUrl("AddNewCodePage.qml"))
             }
